@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_module/pages/404.dart';
 import 'package:flutter_module/pages/home/category.dart';
+import 'package:flutter_module/pages/home/home_drawer.dart';
 import 'package:flutter_module/pages/home/index.dart';
 import 'package:flutter_module/pages/home/project.dart';
 import 'package:flutter_module/pages/router.dart';
@@ -61,6 +62,9 @@ class _HomePageState extends State<HomePage> {
             },
           ),
         ],
+      ),
+      drawer: Drawer(
+        child: HomeDrawerPage()
       ),
       body: pages[_currentIndex],
 //      floatingActionButton: FloatingActionButton(

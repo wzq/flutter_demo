@@ -36,6 +36,10 @@ dependencies:
 
   flutter_swiper: ^1.1.6
 
+  fluttertoast: ^7.0.2
+
+  shared_preferences: ^0.5.10
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
