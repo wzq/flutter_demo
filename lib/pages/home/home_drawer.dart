@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_module/pages/login.dart';
-import 'package:flutter_module/widget/view_text.dart';
 
 class HomeDrawerPage extends StatefulWidget {
   @override

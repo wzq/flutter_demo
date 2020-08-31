@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_module/pages/404.dart';
-import 'package:flutter_module/pages/home/category.dart';
+import 'package:flutter_module/pages/home/home_category.dart';
 import 'package:flutter_module/pages/home/home_drawer.dart';
-import 'package:flutter_module/pages/home/index.dart';
-import 'package:flutter_module/pages/home/project.dart';
+import 'package:flutter_module/pages/home/home_index.dart';
+import 'package:flutter_module/pages/home/home_project.dart';
 import 'package:flutter_module/pages/router.dart';
 
 void main() => runApp(MainApp());
