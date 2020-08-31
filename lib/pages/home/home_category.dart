@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_module/model/bean_category.dart';
-import 'package:flutter_module/pages/router.dart';
+import 'package:flutter_module/router.dart';
 import 'package:flutter_module/util/network.dart';
 import 'package:flutter_module/widget/view_text.dart';
 

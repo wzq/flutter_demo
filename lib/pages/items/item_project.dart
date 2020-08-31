@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_module/model/bean_article.dart';
-import 'package:flutter_module/pages/router.dart';
+import 'package:flutter_module/router.dart';
 import 'package:flutter_module/widget/view_text.dart';
 
 class ProjectItem extends StatelessWidget {

@@ -4,7 +4,7 @@ import 'package:flutter_module/pages/home/home_category.dart';
 import 'package:flutter_module/pages/home/home_drawer.dart';
 import 'package:flutter_module/pages/home/home_index.dart';
 import 'package:flutter_module/pages/home/home_project.dart';
-import 'package:flutter_module/pages/router.dart';
+import 'package:flutter_module/router.dart';
 
 void main() => runApp(MainApp());
 
