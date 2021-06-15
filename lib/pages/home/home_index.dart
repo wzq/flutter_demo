@@ -13,7 +13,7 @@ class IndexPage extends StatefulWidget {
   }
 }
 
-class IndexPageState extends State<IndexPage> {
+class IndexPageState extends State<IndexPage> with WidgetsBindingObserver{
 
   List<Article> listData;
   void fetchData() {
@@ -61,4 +61,45 @@ class IndexPageState extends State<IndexPage> {
               : Center(child: CircularProgressIndicator());
         },
       );
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    print(state.toString());
+  }
+
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+    print('didChangeDependencies');
+  }
+
+  @override
+  void didUpdateWidget(Widget oldWidget) {
+    // TODO: implement didUpdateWidget
+    super.didUpdateWidget(oldWidget);
+    print('didUpdateWidget');
+  }
+
+  @override
+  void reassemble() {
+    // TODO: implement reassemble
+    super.reassemble();
+    print('reassemble');
+  }
+  @override
+  void deactivate() {
+    // TODO: implement deactivate
+    super.deactivate();
+    print('deactivate');
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    WidgetsBinding.instance.addObserver(this);
+    print('dispose');
+  }
+
 }

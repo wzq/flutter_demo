@@ -10,3 +10,17 @@ class SearchPage extends StatelessWidget {
     );
   }
 }
+
+
+class LifecyclePage extends StatefulWidget {
+  @override
+  _LifecyclePageState createState() => _LifecyclePageState();
+}
+
+class _LifecyclePageState extends State<LifecyclePage> {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+

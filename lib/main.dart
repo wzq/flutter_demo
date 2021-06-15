@@ -18,6 +18,7 @@ class MainApp extends StatelessWidget {
       ),
       routes: AppRouter.routes,
       onGenerateRoute: AppRouter.generateRoute,
+      onUnknownRoute: AppRouter.unknownRoute,
       home: HomePage(),
     );
   }
