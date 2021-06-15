@@ -1,69 +1,66 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_module/model/bean_article.dart';
 import 'package:flutter_module/model/bean_category.dart';
-import 'package:flutter_module/pages/items/item_article.dart';
-import 'package:flutter_module/util/network.dart';
+import 'package:flutter_module/pages/items/Item_detail_category.dart';
 
-class CategoryDetailPage extends StatelessWidget {
+class CategoryDetailPage extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => _CategoryDetailPageState();
+}
+
+class _CategoryDetailPageState extends State<CategoryDetailPage> {
+  final pageController = PageController(initialPage: 0);
+  final tabController = TabController(length: , vsync: vsync)
+  var _currentIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    Category params = ModalRoute.of(context).settings.arguments;
+    Category params = ModalRoute
+        .of(context)
+        .settings
+        .arguments;
     return DefaultTabController(
         length: params.children.length,
         child: Scaffold(
           appBar: AppBar(
             title: Text(params.name),
             bottom: TabBar(
+              controller: ,
               tabs: params.children
-                  .map((e) => Tab(
-                        text: e.name,
-                      ))
+                  .map((e) =>
+                  Tab(
+                    text: e.name,
+                  ))
                   .toList(),
+
+              onTap: (index) {
+                pageController.jumpTo(index.toDouble());
+              },
               isScrollable: true,
             ),
           ),
-          body: TabBarView(children: params.children.map((e) => _TabPage.create(e),).toList() ,
-        )));
-  }
-}
-
-class _TabPage extends StatefulWidget {
-  final Category _data;
-
-  _TabPage.create(this._data);
-
-  @override
-  _TabPageState createState() => _TabPageState.create(_data);
-}
-
-class _TabPageState extends State<_TabPage> {
-  Category _data;
-
-  _TabPageState.create(this._data);
-
-  Future<List<Article>> fetchData() async {
-    return HttpX.get("article/list/0/json", queryParameters: {"cid": _data.id}).then((value) => ArticleData.fromJson(value.data).articles);
+          body: Center(
+            child: PageView.builder(
+              controller: pageController,
+              itemCount: params.children.length,
+              itemBuilder: (BuildContext context, int index) {
+                var param = params.children[index];
+                return CategoryTabPage.create(param);
+              },
+              onPageChanged: (index) {
+                setState(() {
+                  _currentIndex = index;
+                });
+              },
+            ),
+          ),
+        ));
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: FutureBuilder<List<Article>>(
-        future: fetchData(),
-        builder: (context, snapshot) {
-          if (snapshot.hasError) print(snapshot.error);
-          return snapshot.hasData
-              ? bindList(snapshot.data)
-              : Center(child: CircularProgressIndicator());
-        },
-      ),
-    );
-  }
-
-  ListView bindList(List<Article> listData) => ListView.builder(
-      itemCount: listData.length,
-      itemBuilder: (BuildContext context, int index) {
-        var itemData = listData[index];
-        return ArticleItem(itemData);
-      });
 }
+
+

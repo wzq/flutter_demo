@@ -64,10 +64,11 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      drawer: Drawer(
-        child: HomeDrawerPage()
+      drawer: Drawer(child: HomeDrawerPage()),
+      body: IndexedStack(
+        index: _currentIndex,
+        children: pages,
       ),
-      body: pages[_currentIndex],
 //      floatingActionButton: FloatingActionButton(
 //        onPressed: () {},
 //        tooltip: 'back to top',

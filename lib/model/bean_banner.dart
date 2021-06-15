@@ -7,7 +7,7 @@ class BannerData {
 
   BannerData.fromJson(Map<String, dynamic> json) {
     if (json['data'] != null) {
-      data = new List<BannerItem>();
+      data = <BannerItem>[];
       json['data'].forEach((v) {
         data.add(new BannerItem.fromJson(v));
       });
@@ -39,13 +39,13 @@ class BannerItem {
 
   BannerItem(
       {this.desc,
-        this.id,
-        this.imagePath,
-        this.isVisible,
-        this.order,
-        this.title,
-        this.type,
-        this.url});
+      this.id,
+      this.imagePath,
+      this.isVisible,
+      this.order,
+      this.title,
+      this.type,
+      this.url});
 
   BannerItem.fromJson(Map<String, dynamic> json) {
     desc = json['desc'];

@@ -7,6 +7,28 @@ class SearchPage extends StatelessWidget {
       appBar: AppBar(
         title: Text("search"),
       ),
+      body: test(context),
+    );
+  }
+
+  Widget test(BuildContext context) {
+    final PageController controller = PageController(initialPage: 0);
+    return PageView(
+      /// [PageView.scrollDirection] defaults to [Axis.horizontal].
+      /// Use [Axis.vertical] to scroll vertically.
+      scrollDirection: Axis.horizontal,
+      controller: controller,
+      children: const <Widget>[
+        Center(
+          child: Text('First Page'),
+        ),
+        Center(
+          child: Text('Second Page'),
+        ),
+        Center(
+          child: Text('Third Page'),
+        )
+      ],
     );
   }
 }
