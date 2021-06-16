@@ -7,60 +7,63 @@ class CategoryDetailPage extends StatefulWidget {
   State<StatefulWidget> createState() => _CategoryDetailPageState();
 }
 
-class _CategoryDetailPageState extends State<CategoryDetailPage> {
-  final pageController = PageController(initialPage: 0);
-  final tabController = TabController(length: , vsync: vsync)
-  var _currentIndex = 0;
+class _CategoryDetailPageState extends State<CategoryDetailPage>
+    with SingleTickerProviderStateMixin {
+  PageController _pageController;
 
   @override
   void initState() {
     super.initState();
+    _pageController = PageController();
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    Category params = ModalRoute
-        .of(context)
-        .settings
-        .arguments;
+    Category params = ModalRoute.of(context).settings.arguments;
     return DefaultTabController(
-        length: params.children.length,
-        child: Scaffold(
-          appBar: AppBar(
-            title: Text(params.name),
-            bottom: TabBar(
-              controller: ,
-              tabs: params.children
-                  .map((e) =>
-                  Tab(
-                    text: e.name,
-                  ))
-                  .toList(),
-
-              onTap: (index) {
-                pageController.jumpTo(index.toDouble());
-              },
-              isScrollable: true,
+      length: params.children.length,
+      child: Builder(
+        builder: (BuildContext context) {
+          final TabController tabController = DefaultTabController.of(context);
+          return Scaffold(
+            appBar: AppBar(
+              title: Text(params.name),
+              bottom: TabBar(
+                tabs: params.children
+                    .map((e) => Tab(
+                          text: e.name,
+                        ))
+                    .toList(),
+                onTap: (index) {
+                  _pageController.animateToPage(index,
+                      duration: Duration(milliseconds: 300),
+                      curve: Curves.ease);
+                },
+                isScrollable: true,
+              ),
             ),
-          ),
-          body: Center(
-            child: PageView.builder(
-              controller: pageController,
-              itemCount: params.children.length,
-              itemBuilder: (BuildContext context, int index) {
-                var param = params.children[index];
-                return CategoryTabPage.create(param);
-              },
-              onPageChanged: (index) {
-                setState(() {
-                  _currentIndex = index;
-                });
-              },
+            body: Center(
+              child: PageView.builder(
+                controller: _pageController,
+                itemCount: params.children.length,
+                itemBuilder: (BuildContext context, int index) {
+                  var param = params.children[index];
+                  return CategoryTabPage.create(param);
+                },
+                onPageChanged: (index) {
+                  tabController.animateTo(index);
+                },
+              ),
             ),
-          ),
-        ));
+          );
+        },
+      ),
+    );
   }
-
 }
-
-
